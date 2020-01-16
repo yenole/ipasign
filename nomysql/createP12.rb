@@ -30,6 +30,10 @@ begin
 #   写入证书
 	x509_certificate = certificateObj.download
 
+	keyPath = GlobalConfig::ROOT_KEY + '/applesign/' + username + '/' + certificateId
+	system "mkdir -p #{keyPath}"
+	system "chmod 777 #{keyPath}"
+
 	# cer证书
 	File.write(keyPath + "/#{certificateId}.csr", csr.to_der)
 	# 私钥
